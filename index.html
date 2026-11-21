@@ -98,12 +98,24 @@
 .hide-setup .melody-row.active-row .note{min-height:clamp(80px,15vh,155px)}
 @media(max-width:680px){.hide-setup{padding:4px}.hide-setup .stage{padding:6px}.hide-setup .buttons{gap:3px;flex-wrap:wrap}.hide-setup .buttons button{padding:8px 9px;font-size:12px}.hide-setup .songtitle{font-size:25px}}
 
-/* Syllable sing-along: vocal cues separated into syllables below colored tiles.
+/* Syllable sing-along: vocal cues now appear in a separate line beneath proportional colored tiles.
    Alignment to individual notes remains a draft, never represent as verified. */
 .syllable{display:block;font-size:clamp(11px,1.35vw,19px);font-weight:750;line-height:1.1;max-width:100%;overflow-wrap:anywhere;color:#151e2a}
 .active-row .syllable{font-size:clamp(14px,2vw,24px)}
 .syllable-unverified{font-size:12px;color:#f5d995;font-weight:700;padding:2px 0}
 @media(max-width:680px){.active-row .syllable{font-size:13px}.syllable{font-size:10px}}
+
+/* Lyric-under-note layout, each note and its syllable share one proportional column. */
+.melody-row .note-pair{display:flex;flex-direction:column;flex-basis:0;min-width:30px;align-self:stretch;box-sizing:border-box}
+.melody-row.active-row .note-pair{min-width:38px}
+.melody-row .note-pair .note{flex:1 1 auto;width:100%;min-width:0;min-height:44px}
+.melody-row.active-row .note-pair .note{min-height:clamp(80px,14vh,160px)}
+.melody-row .note-pair .lyric-under{height:auto;min-height:35px;padding:7px 1px 2px;text-align:center;line-height:1.1;color:#edf4ff;font-size:clamp(11px,1.3vw,18px);font-weight:720;overflow-wrap:anywhere}
+.melody-row.active-row .note-pair .lyric-under{font-size:clamp(15px,2.2vw,27px);color:#fff2bc;min-height:47px}
+.melody-row .note-pair.is-active .lyric-under{text-decoration:underline;text-decoration-thickness:3px;text-underline-offset:3px}
+.melody-row .note-pair .lyric-under:empty::after{content:" "}
+.hide-setup .melody-row .note-pair .lyric-under{min-height:28px}
+@media(max-width:680px){.melody-row .note-pair{min-width:21px}.melody-row.active-row .note-pair{min-width:28px}.melody-row .note-pair .lyric-under{font-size:10px}.melody-row.active-row .note-pair .lyric-under{font-size:15px}}
 </style></head><body><div class="app" id="app"><header><div><h1>🔔 Primary Bell Player</h1><div class="subtitle">8 MINIARTIS bells · iPad + HDMI television · website edition</div></div><button id="presentation">📺 TV / Presentation Mode</button></header>
 <div class="controls"><label>Song <select id="song"><option value="practice">Bell Practice (demo)</option><option value="families">Families Can Be Together Forever</option><option value="choose">Choose the Right</option><option value="there">If I Were There</option></select></label><label>Tempo <input id="tempo" type="range" min="40" max="150" value="80"><strong id="bpm">80 BPM</strong></label><label><input id="sound" type="checkbox" checked> Play guide tones</label><label><input id="loop" type="checkbox"> Repeat</label></div>
 <section class="stage"><div class="topline"><div class="eyebrow" id="section">Practice the 8 colors</div><div class="eyebrow" id="indicator">READY</div></div><div class="songtitle" id="title">Bell Practice</div><div class="prompt" id="prompt">Tap Play or Next to start</div><div class="singing-panel" id="singing-panel" hidden><div class="singing-head"><span id="singing-section"></span><span>Sing along · approximate lyric cue</span></div><div class="singing-verse" id="singing-verse"></div><div class="singing-caution">Lyrics are from your sheet music; highlighted words are approximate until the melody/rhythm transcription is verified.</div></div><div class="windowlabel" id="windowlabel">ALL SONG LINES · ACTIVE LINE ENLARGES · SCROLL FOLLOWS AUTOMATICALLY</div><div class="rhythm-warning">⚠ DRAFT: syllables are provisionally spaced over bell notes, not verified note-by-note. Pitches, note lengths and exact phrase boundaries still require score checking.</div><div class="score-legend">Sing the words • ring the highlighted bell • note length is shown in beats</div><div class="sequence" id="seq" aria-label="Full melody score, all rows"></div><div class="progress"><div class="bar" id="bar"></div></div><div class="buttons"><button id="previous">◀ Previous</button><button class="primary" id="play">▶ Auto Play</button><button id="mute" type="button" aria-pressed="false" title="Mute or unmute guide tones">🔊 Mute</button><button id="next">Next ▶</button><button id="reset">↺ Start over</button><div class="counter" id="count">0 / 0</div><button id="exit-tv" type="button">✕ Exit TV</button></div></section>
@@ -176,19 +188,22 @@ for(let r=0;r<rowCount;r++){
  row.appendChild(cap);
  const words=(meta[selected].lyrics||'').split(/\r?\n/)[r]||'';
  if(words.trim()){const lyr=document.createElement('div');lyr.className='score-lyrics';lyr.textContent=words;row.appendChild(lyr)}
+
  for(const i of lines[r]){
-  const e=events[i],el=document.createElement('div');
+  const e=events[i],pair=document.createElement('div'),el=document.createElement('div');
+  pair.className='note-pair'+(i===pos?' is-active':'');
+  pair.style.flexGrow=String(Math.min(e.beats,8));
   el.className='note '+(e.name==='R'?'rest ':'')+(i===pos?'current':i<pos?'past':'future');
   el.style.background=N[e.name]?.color||'#d2d9e5';
-  el.style.flexGrow=String(Math.min(e.beats,8));
   const main=e.name==='R'?'—':e.name==="C'"?'C↑':e.name;
   const dur=e.beats===.25?'¼ beat':e.beats===.5?'⅛ note':e.beats===1?'♩ 1 beat':e.beats===2?'𝅗𝅥 2 beats':e.beats===4?'𝅝 4 beats':e.beats+' beats';
   const n=document.createElement('strong');n.textContent=main;el.appendChild(n);
- const syllable=syllableForNote(i);if(syllable){const label=document.createElement('span');label.className='syllable';label.textContent=syllable;el.appendChild(label)}
   const duration=document.createElement('small');duration.className='dur';duration.textContent=dur;el.appendChild(duration);
+  const lyric=document.createElement('div');lyric.className='lyric-under';lyric.textContent=syllableForNote(i);
   el.title=`Note ${i+1}, ${e.name==='R'?'silent':e.name}, ${e.beats} beat(s)`;
-  el.onclick=()=>{stop();pos=i;render();tone(e.name,60/tempo()*e.beats)};
-  row.appendChild(el);
+  pair.title=el.title;
+  pair.onclick=()=>{stop();pos=i;render();tone(e.name,60/tempo()*e.beats)};
+  pair.appendChild(el);pair.appendChild(lyric);row.appendChild(pair);
  }
  const rhythm=document.createElement('div');rhythm.className='rhythm-guide';
  const total=lines[r].reduce((sum,i)=>sum+events[i].beats,0);
