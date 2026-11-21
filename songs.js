@@ -1,7 +1,7 @@
 // PRIMARY BELL SONG LIBRARY — edit this file to publish new arrangements.
 // Note format: C D E F G A B C' and R for silence; duration /2 or /0.5.
-// 'If I Were There' is a first-pass transcription with approximate timing.
-window.PRIMARY_BELL_SONGS = {practice:{title:'Bell Practice',section:'Demo sequence — not an actual hymn',notes:"C D E F G A B C' C' B A G F E D C"},families:{title:'Families Can Be Together Forever',section:'Children’s Songbook · page 188',notes:''},choose:{title:'Choose the Right',section:'Hymns · no. 239',notes:''},there:{title:'If I Were There',section:'Full-song bell adaptation · melody only · Monica Scott & Angie Killian',notes:"R/12 | G/0.5 F/0.5 G/0.5 B/2 G/0.5 F/0.5 G/0.5 B/0.5 G/0.5 A/2 E/0.5 G/0.5 B C'/0.5 B B/0.5 C'/0.5 B/0.5 B/0.5 G/0.5 A/2 G/0.5 F/0.5 G/0.5 B/2 G/0.5 F/0.5 G/0.5 B/0.5 G/0.5 A/2 E/0.5 G/0.5 B/0.5 C'/0.5 B/0.5 B/0.5 C'/0.5 B/0.5 B/0.5 G/0.5 R/2 C'/0.5 B/0.5 C'/0.5 R/2 C'/0.5 C'/0.5 R/0.5 R/0.5 B/0.5 G G/0.5 A/0.5 G/0.5 A/2 F/0.5 F/0.5 E/0.5 F/0.5 F/0.5 G E/0.5 C'/0.5 B/0.5 R/2 C'/0.5 C'/0.5 R/0.5 R/0.5 R/2 R/0.5 R/0.5 C'/0.5 R/2 B/0.5 E/0.5 R/0.5 E/4 | R/12 | G/0.5 F/0.5 G/0.5 E/4 B/2 G/0.5 F/0.5 G/0.5 B/0.5 G/0.5 A/2 E/0.5 G/0.5 B C'/0.5 B B/0.5 C'/0.5 B/0.5 B/0.5 G/0.5 A/2 G/0.5 F/0.5 G/0.5 B/2 G/0.5 F/0.5 G/0.5 B/0.5 G/0.5 A/2 E/0.5 G/0.5 B/0.5 C'/0.5 B/0.5 B/0.5 C'/0.5 B/0.5 B/0.5 G/0.5 R/2 C'/0.5 B/0.5 C'/0.5 R/2 C'/0.5 C'/0.5 R/0.5 R/0.5 B/0.5 G G/0.5 A/0.5 G/0.5 A/2 F/0.5 F/0.5 E/0.5 F/0.5 F/0.5 G E/0.5 C'/0.5 B/0.5 R/2 C'/0.5 C'/0.5 R/0.5 R/0.5 R/2 R/0.5 R/0.5 C'/0.5 R/2 B/0.5 E/0.5 R/0.5 E/4 | R/16 | A/0.5 G/0.5 A R/2 A/0.5 G/0.5 A/0.5 R/0.5 A/0.5 B/2 R/0.5 A/0.5 R/0.5 R/0.5 R R/0.5 R/0.5 R/0.5 R/0.5 A/0.5 B/2 A/0.5 G/0.5 A/0.5 R/2 A/0.5 G/0.5 A/0.5 R/0.5 A/0.5 B/2 R/0.5 A/0.5 R/0.5 R/0.5 R/0.5 R/0.5 R/0.5 R/0.5 R/0.5 R/0.5 R/0.5 A/0.5 R/2 R/0.5 R/0.5 R/0.5 R/0.5 R/2 R/0.5 R/0.5 R/0.5 R/0.5 R/0.5 A A/0.5 B/0.5 A/0.5 B/2 G/0.5 G/0.5 R/0.5 G/0.5 G/0.5 A R/0.5 R/0.5 R/0.5 R/2 R/0.5 R/0.5 R/0.5 R/0.5 R/2 R/0.5 R/0.5 R R/2 R/0.5 R/0.5 E/0.5 R/4 R/0.5 A/0.5 G/0.5 A/4"}};
+// 'If I Were There' is an UNVERIFIED first-pass transcription: many pitches and rhythms require audit against PDF.
+window.PRIMARY_BELL_SONGS = {practice:{title:'Bell Practice',section:'Demo sequence — not an actual hymn',notes:"C D E F G A B C' C' B A G F E D C"},families:{title:'Families Can Be Together Forever',section:'Children’s Songbook · page 188',notes:''},choose:{title:'Choose the Right',section:'Hymns · no. 239',notes:''},there:{title:'If I Were There',section:'Full-song bell adaptation · melody only · Monica Scott & Angie Killian',notes:"R/12 | G/0.5 F/0.5 G/0.5 A/2 G/0.5 F/0.5 G/0.5 B/0.5 G/0.5 A/2 E/0.5 G/0.5 B C'/0.5 B B/0.5 C'/0.5 B/0.5 B/0.5 G/0.5 A/2 G/0.5 F/0.5 G/0.5 B/2 G/0.5 F/0.5 G/0.5 B/0.5 G/0.5 A/2 E/0.5 G/0.5 B/0.5 C'/0.5 B/0.5 B/0.5 C'/0.5 B/0.5 B/0.5 G/0.5 R/2 C'/0.5 B/0.5 C'/0.5 R/2 C'/0.5 C'/0.5 R/0.5 R/0.5 B/0.5 G G/0.5 A/0.5 G/0.5 A/2 F/0.5 F/0.5 E/0.5 F/0.5 F/0.5 G E/0.5 C'/0.5 B/0.5 R/2 C'/0.5 C'/0.5 R/0.5 R/0.5 R/2 R/0.5 R/0.5 C'/0.5 R/2 B/0.5 E/0.5 R/0.5 E/4 | R/12 | G/0.5 F/0.5 G/0.5 E/4 B/2 G/0.5 F/0.5 G/0.5 B/0.5 G/0.5 A/2 E/0.5 G/0.5 B C'/0.5 B B/0.5 C'/0.5 B/0.5 B/0.5 G/0.5 A/2 G/0.5 F/0.5 G/0.5 B/2 G/0.5 F/0.5 G/0.5 B/0.5 G/0.5 A/2 E/0.5 G/0.5 B/0.5 C'/0.5 B/0.5 B/0.5 C'/0.5 B/0.5 B/0.5 G/0.5 R/2 C'/0.5 B/0.5 C'/0.5 R/2 C'/0.5 C'/0.5 R/0.5 R/0.5 B/0.5 G G/0.5 A/0.5 G/0.5 A/2 F/0.5 F/0.5 E/0.5 F/0.5 F/0.5 G E/0.5 C'/0.5 B/0.5 R/2 C'/0.5 C'/0.5 R/0.5 R/0.5 R/2 R/0.5 R/0.5 C'/0.5 R/2 B/0.5 E/0.5 R/0.5 E/4 | R/16 | A/0.5 G/0.5 A R/2 A/0.5 G/0.5 A/0.5 R/0.5 A/0.5 B/2 R/0.5 A/0.5 R/0.5 R/0.5 R R/0.5 R/0.5 R/0.5 R/0.5 A/0.5 B/2 A/0.5 G/0.5 A/0.5 R/2 A/0.5 G/0.5 A/0.5 R/0.5 A/0.5 B/2 R/0.5 A/0.5 R/0.5 R/0.5 R/0.5 R/0.5 R/0.5 R/0.5 R/0.5 R/0.5 R/0.5 A/0.5 R/2 R/0.5 R/0.5 R/0.5 R/0.5 R/2 R/0.5 R/0.5 R/0.5 R/0.5 R/0.5 A A/0.5 B/0.5 A/0.5 B/2 G/0.5 G/0.5 R/0.5 G/0.5 G/0.5 A R/0.5 R/0.5 R/0.5 R/2 R/0.5 R/0.5 R/0.5 R/0.5 R/2 R/0.5 R/0.5 R R/2 R/0.5 R/0.5 E/0.5 R/4 R/0.5 A/0.5 G/0.5 A/4"}};
 
 
 /* Singing cues transcribed from the user-provided score.
@@ -38,5 +38,21 @@ window.PRIMARY_BELL_LYRICS = {
    "I'd sense the peace that filled the air,",
    "If I were there, if I were there."
   ]}
+ ]
+};
+
+/* Section boundaries are approximate positions in the existing draft sequence.
+   Do not interpret them as a verified measure/phrase alignment. */
+window.PRIMARY_BELL_SECTIONS = {
+ there: [
+  {at:0,title:"Instrumental introduction",kind:"intro",verse:-1},
+  {at:1,title:"Verse 1",kind:"verse",verse:0},
+  {at:43,title:"Chorus · Verse 1",kind:"chorus",verse:0},
+  {at:80,title:"Instrumental transition",kind:"intro",verse:-1},
+  {at:81,title:"Verse 2",kind:"verse",verse:1},
+  {at:124,title:"Chorus · Verse 2",kind:"chorus",verse:1},
+  {at:161,title:"Instrumental transition",kind:"intro",verse:-1},
+  {at:162,title:"Verse 3",kind:"verse",verse:2},
+  {at:207,title:"Final chorus and ending",kind:"chorus",verse:2}
  ]
 };
