@@ -365,6 +365,79 @@
 @media(max-width:680px){
  .approved-grid .note-pair.is-active .note{border-width:3px!important;outline-width:3px!important}
 }
+
+/* Neutral grayscale theme — preserves bell-note colors and white tracking. */
+:root{background:#17191c;color:#f5f5f5;color-scheme:dark}
+html,body{
+ background:linear-gradient(145deg,#3e4145 0%,#26282c 38%,#111215 100%) fixed!important;
+ color:#f5f5f5;
+}
+.app{color:#f5f5f5}
+.stage{
+ background:linear-gradient(145deg,#393c40 0%,#292b2f 50%,#1b1d20 100%)!important;
+ border:1px solid #696d72!important;
+ box-shadow:0 8px 32px rgba(0,0,0,.27);
+}
+.controls,.panel{
+ background:linear-gradient(140deg,#34373b,#222428)!important;
+ border-color:#65696e!important;
+}
+.tabs button,button{
+ background:linear-gradient(180deg,#55595e,#373a3e)!important;
+ color:#fafafa!important;
+ border:1px solid #787d82!important;
+}
+button:hover{filter:brightness(1.15)}
+button.primary,.tabs button.tab-active{
+ background:linear-gradient(180deg,#73777d,#4c5055)!important;
+ color:#fff!important;
+ border-color:#a3a6aa!important;
+}
+.controls select,.controls input,.note-layout-picker select,.view-mode-picker select,textarea.editor{
+ background:#27292d!important;
+ color:#f6f6f6!important;
+ border-color:#73777d!important;
+}
+.controls label,.subtitle,.small,.source,.hint{color:#d3d5d7!important}
+.approved-row,.melody-row,.words-line{
+ background:linear-gradient(160deg,#35383d,#25272b)!important;
+ border-color:#6c7075!important;
+ color:#f4f4f4;
+}
+.approved-row.active-row,.melody-row.active-row{
+ background:linear-gradient(155deg,#51555a,#34373b)!important;
+ border:2px solid #fff!important;
+ box-shadow:0 0 0 2px rgba(255,255,255,.17)!important;
+}
+.approved-heading{
+ background:linear-gradient(90deg,#484b50,#303237)!important;
+ border-top-color:#85898e!important;
+ color:#f3f3f3!important;
+}
+.approved-caption,.approved-row.active-row .approved-caption,.row-caption,.active-row .row-caption{color:#f3f3f3!important}
+.sequence,.words-sequence{background:transparent!important}
+.words-heading{color:#f2f2f2!important;border-top-color:#787c81!important}
+.words-line.active-words{
+ background:linear-gradient(145deg,#62666b,#414449)!important;
+ border-color:#fff!important;
+ box-shadow:0 0 0 2px rgba(255,255,255,.16)!important;
+ color:#fff!important;
+}
+.hide-setup .buttons{background:linear-gradient(130deg,#3b3e43,#242629)!important;border-top-color:#777b80!important}
+.usage-chip{border-color:#7b8085!important}
+.usage-label,.bell-usage,.usage-none{color:#d8dadd!important}
+/* High-contrast white current-note marker: never recolor the bells. */
+.approved-grid .note-pair.is-active .note,
+.approved-grid .note-pair.is-active .note.current{
+ border-color:#fff!important;
+ outline-color:#fff!important;
+ box-shadow:0 0 0 3px #25272b,0 0 15px 6px rgba(255,255,255,.65)!important;
+}
+.approved-grid .note-pair.is-active::before{color:#fff!important;text-shadow:0 1px 4px #141414!important}
+.approved-grid .note-pair.is-active .lyric-under{
+ background:#fff!important;color:#1b1d20!important;
+ box-shadow:0 0 0 2px #292b2f!important;
+}
 </style><meta name="primary-bell-build" content="manual-four-way-20261126-r1"></head><body><div class="app" id="app"><header class="main-header"><nav class="tabs"><button id="tab-play" class="tab-active" type="button">♪ Play Songs</button><button id="tab-library" type="button">＋ Song Library / Import</button></nav><button id="presentation" type="button">📺 Presentation Mode</button></header><div id="play-view">
 <div class="controls"><label>Song <select id="song"><option value="practice">Bell Practice (demo)</option><option value="families">Families Can Be Together Forever</option><option value="choose">Choose the Right</option><option value="there">If I Were There</option></select></label><label class="view-mode-picker">View <select id="display-mode"><option value="bells">Singing &amp; Bells</option><option value="words">Words Only</option></select></label><label id="note-layout-picker" class="note-layout-picker" hidden>Notes <select id="note-layout"><option value="boxes">Boxes</option><option value="circles">Circles</option></select></label><label class="tempo-control">Tempo <input id="tempo" type="range" min="40" max="150" value="80"><strong id="bpm">80 BPM</strong></label><label><input id="sound" type="checkbox" checked> Play guide tones</label><label><input id="loop" type="checkbox"> Repeat</label></div>
 <section class="stage"><div class="topline" hidden><div id="section"></div><div id="indicator"></div></div><div class="songtitle" id="title">Bell Practice</div><div id="bell-usage" class="bell-usage" aria-label="Bells used in this song"></div><div class="prompt" id="prompt" hidden></div><div class="singing-panel" id="singing-panel" hidden><div class="singing-head"><span id="singing-section"></span><span>Sing along · approximate lyric cue</span></div><div class="singing-verse" id="singing-verse"></div><div class="singing-caution">Lyrics are from your sheet music; highlighted words are approximate until the melody/rhythm transcription is verified.</div></div><div class="windowlabel" id="windowlabel" hidden></div><div class="sequence" id="seq" aria-label="Full melody score, all rows"></div><div class="words-sequence" id="words-seq" hidden aria-label="Words only lyrics display"></div><div class="progress" hidden><div class="bar" id="bar"></div></div><div class="buttons"><button id="line-up" type="button" title="Previous musical line (↑)">↑ Line</button><button id="previous">◀ Previous</button><button class="primary" id="play">▶ Auto Play</button><button id="mute" type="button" aria-pressed="false" title="Mute or unmute guide tones">🔊 Mute</button><button id="test-sound" type="button" title="Play a sample bell note">♪ Test Sound</button><span id="audio-feedback" role="status" aria-live="polite"></span><button id="next">Next ▶</button><button id="line-down" type="button" title="Next musical line (↓)">↓ Line</button><button id="reset">↺ Start over</button><div class="counter" id="count" hidden>0 / 0</div><button id="exit-tv" type="button">✕ Exit TV</button></div></section></div><section id="library-view" class="panel" hidden><h2>Song Library &amp; Import</h2><div class="small" id="app-version">Player version: Audio engine repair · November 22, 2026</div><p>Approve a new song with ChatGPT, then import its JSON file here. Songs you import remain saved in this browser on this device.</p><div class="library-actions"><button class="primary" id="import-reviewed" type="button">＋ Import approved song (.json)</button><button id="export-reviewed" type="button">↓ Export selected song (.json)</button><input id="reviewed-file" type="file" accept=".json,application/json" hidden></div><div class="library-hint">Structured song format: <code>{"format":"primary-bell-player-v1","title":"Song Name","sections":[{"name":"Verse 1","lines":[[["C","sing",1],["D","along",0.5]]]}]}</code>. Each item contains a note, lyric syllable, and duration in beats. C' is white high C; C+C' means ring red low C and white high C together; R is gray sing-only.</div><h2>Notes &amp; Arrangement Editor</h2><p id="editorhelp">This practice sequence is a demonstration, not one of the requested songs.</p><textarea id="notes" class="editor" spellcheck="false" aria-label="Bell note sequence"></textarea><label class="editor-label" for="lyrics">Words for each melody row (one line of lyrics per row, in order)</label><textarea id="lyrics" class="editor lyrics-editor" spellcheck="false" placeholder="Enter the words for row 1&#10;Enter the words for row 2&#10;Enter the words for row 3"></textarea><div class="small">The words are aligned by row, not individual syllable. For accurate singing, each row should ultimately be a real musical phrase; the existing If I Were There arrangement is still a preliminary timing transcription. Edits here are saved on this iPad only until published to songs.js.</div><div class="editorbuttons"><button class="primary" id="apply">Apply notes to selected song</button><button id="export">Export saved songs</button><button id="import">Import saved songs</button><input type="file" id="file" accept=".json,application/json" hidden></div><div class="small">Format: C D E F G A B C' (high C), and R for a rest. Add a duration using /, such as G/2 for a two-beat note or C/0.5 for half a beat. Notes are one beat by default. Separate notes with spaces, commas, or line breaks. Editor changes are saved only on this device. To publish new songs for everyone, update songs.js in your website repository.</div><div class="status" id="status"></div></section>
